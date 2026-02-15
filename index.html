@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduAI | Digital Learning Assistant</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <!-- Persistent Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo clickable" id="logoHome">
+                <i class="fas fa-graduation-cap"></i>
+                <span>EduAI</span>
+            </div>
+            <div class="nav-status">
+                <span id="currentPageStatus">Dashboard</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- View: Home / Input -->
+    <div id="homeView" class="view active-view">
+        <header class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title"> <span class="highlight">Study Buddy.</span></h1>
+                <p class="hero-subtitle">Simplify your learning path. Paste technical notes and get instant AI summaries
+                    and quizzes.</p>
+            </div>
+            <div class="hero-image">
+                <div class="hero-icon-bg"><i class="fas fa-brain"></i></div>
+            </div>
+        </header>
+
+        <main class="container">
+            <!-- App Modules Grid -->
+            <div class="dashboard-nav-grid">
+                <div class="nav-card active" id="navToInput">
+                    <div class="nav-card-icon"><i class="fas fa-edit"></i></div>
+                    <div class="nav-card-info">
+                        <h3>Input Notes</h3>
+                        <p>Paste notes to begin</p>
+                    </div>
+                </div>
+                <div class="nav-card disabled" id="navToSummary">
+                    <div class="nav-card-icon"><i class="fas fa-file-alt"></i></div>
+                    <div class="nav-card-info">
+                        <h3>View Summary</h3>
+                        <p>AI insights ready</p>
+                    </div>
+                </div>
+                <div class="nav-card disabled" id="navToQuiz">
+                    <div class="nav-card-icon"><i class="fas fa-tasks"></i></div>
+                    <div class="nav-card-info">
+                        <h3>Take Quiz</h3>
+                        <p>Test your knowledge</p>
+                    </div>
+                </div>
+            </div>
+
+            <section class="card main-card" id="inputSection">
+                <div class="card-header">
+                    <i class="fas fa-paste"></i>
+                    <h2>Input Your Study Material</h2>
+                </div>
+                <p class="card-desc">Paste your text here to begin the transformation.</p>
+                <textarea id="noteInput" placeholder="Paste your lecture notes or articles here..."></textarea>
+                <div class="button-container">
+                    <button id="summarizeBtn" class="btn-primary">
+                        <i class="fas fa-bolt"></i> Summarize & Learn
+                    </button>
+                </div>
+                <div class="error-message" id="errorMessage"></div>
+            </section>
+        </main>
+    </div>
+
+    <!-- View: Loading -->
+    <div id="loadingView" class="view">
+        <div class="loading-center">
+            <div class="spinner"></div>
+            <h2 id="loaderText">Processing...</h2>
+            <p>Our AI is analyzing your content for key insights.</p>
+        </div>
+    </div>
+
+    <!-- View: Summary -->
+    <div id="summaryView" class="view">
+        <main class="container">
+            <div class="view-header">
+                <button class="btn-back" id="backToHomeFromSummary">
+                    <i class="fas fa-chevron-left"></i> Back to Input
+                </button>
+                <div class="header-info">
+                    <span class="badge">Result</span>
+                    <h2>Executive Summary</h2>
+                </div>
+            </div>
+
+            <section class="card result-card">
+                <div class="summary-box" id="summaryText">
+                    <!-- Summary injected here -->
+                </div>
+                <div class="view-actions">
+                    <button id="quizBtn" class="btn-accent">
+                        Generate Practice Quiz <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- View: Quiz -->
+    <div id="quizView" class="view">
+        <main class="container">
+            <div class="view-header">
+                <button class="btn-back" id="backToSummary">
+                    <i class="fas fa-chevron-left"></i> Back to Summary
+                </button>
+                <div class="header-info">
+                    <span class="badge">Assessment</span>
+                    <h2>Practice Test</h2>
+                </div>
+            </div>
+
+            <div class="quiz-container" id="quizContent">
+                <!-- Quiz MCQs injected here -->
+            </div>
+
+            <div class="view-footer-actions">
+                <button class="btn-secondary" id="restartBtn">
+                    <i class="fas fa-redo"></i> Restart with New Notes
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Persistent Footer -->
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2026 EduAI – Advanced Academic Productivity Dashboard.</p>
+        </div>
+    </footer>
+
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>
